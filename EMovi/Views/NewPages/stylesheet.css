@@ -1,0 +1,140 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url("images/floorBW.jpg");
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+}
+
+.btn{
+    background-color: slategray;
+    color: white;
+}
+
+/*----------------------Header shits--------------------------*/
+
+header {
+    padding-top: 5%;
+}
+header img{
+    width: 15%;
+    height: 15%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header h1{
+    text-align: center;
+    font-size: 170%;
+}
+
+/*----------------------sidebar shits--------------------------*/
+#sidebar{
+    width: 20%;
+    float: left;
+}
+
+#sidebar h1{
+    text-align: center;
+}
+
+#sidebar h1 a{
+    text-decoration: none;
+    color: white;
+}
+
+/*----------------------container things-----------------------*/
+#container{
+    width: 75%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 2vh;
+    display: grid;
+    grid-column-gap: 2%;
+    grid-template-columns: 32% 32% 32%;
+}
+
+#container .main_button{
+    height: 15vh; 
+    background-color: slategray;
+    border-radius: 5px;
+    border: solid, 1px, white;
+    padding: 2% 0 2% 0; 
+    cursor: pointer;
+    margin-top: 5%;
+}
+
+#container a{
+    text-decoration: none;
+}
+
+#container div h2{
+    text-align: center;
+    color: white;
+    width: 75%;
+    font-size: 170%;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+#container p{
+    margin-left: 10px;
+}
+
+#container .input_element input{
+    width: 95%; 
+    height: 40px;
+    padding-left: 5%; 
+    margin-bottom: 5%;
+}
+
+#container button{
+    color: white;
+    background-color: slategray;
+    text-align: center;
+    border-radius: 5px;
+    padding: 8% 8%;
+    font-size: 20px;
+    cursor: pointer;
+    display: block; 
+    grid-column-start: 2;
+    border: none;
+    margin: 20px auto;
+}
+
+/*-------------------------result style------------------------------*/
+
+table{
+    width: 100%;
+}
+
+.result{
+    height: 20px;
+    background-color: red;
+}
+
+/*.result .img{
+    max-width: 100%;
+    max-height: 100%;  
+}
+
+.result .info{
+    width: inherit;
+    flex-basis: auto; 
+    margin-top: -2%;
+} */
+
+
+footer{
+    clear: both;
+    width: 75%;
+    margin: 0px auto;
+    text-align: center;
+}
+
+hr{
+    border-top: 1px;
+}
