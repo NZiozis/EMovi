@@ -76,22 +76,23 @@
         </EntityType>
         <EntityType Name="Rates">
           <Key>
-            <PropertyRef Name="UserID" />
-            <PropertyRef Name="MovieID" />
+            <PropertyRef Name="RatingID" />
           </Key>
-          <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="MovieID" Type="int" Nullable="false" />
           <Property Name="Rating" Type="int" Nullable="false" />
+          <Property Name="RatingID" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="User">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\KLAPS\SOURCE\REPOS\EMOVI\EMOVI\APP_DATA\DATABASE.MDF.dbo.AverageRatings' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="AverageRatings">
           <Key>
-            <PropertyRef Name="UserId" />
+            <PropertyRef Name="MovieId" />
+            <PropertyRef Name="Name" />
           </Key>
-          <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="PersonId" Type="int" Nullable="false" />
-          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Email" Type="varchar(max)" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MovieId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Avergae Rating" Type="int" />
         </EntityType>
         <Association Name="FK__Actor__PersonID__3D5E1FD2">
           <End Role="Person" Type="Self.Person" Multiplicity="1" />
@@ -189,15 +190,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__User__PersonId__5CD6CB2B">
-          <End Role="Person" Type="Self.Person" Multiplicity="1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
+        <Association Name="FK__Rates__MovieID__01142BA1">
+          <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+          <End Role="Rates" Type="Self.Rates" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Person">
-              <PropertyRef Name="PersonId" />
+            <Principal Role="Movie">
+              <PropertyRef Name="MovieId" />
             </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="PersonId" />
+            <Dependent Role="Rates">
+              <PropertyRef Name="MovieID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -211,7 +212,14 @@
           <EntitySet Name="Movie" EntityType="Self.Movie" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rates" EntityType="Self.Rates" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AverageRatings" EntityType="Self.AverageRatings" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [AverageRatings].[MovieId] AS [MovieId], 
+    [AverageRatings].[Name] AS [Name], 
+    [AverageRatings].[Description] AS [Description], 
+    [AverageRatings].[Avergae Rating] AS [Avergae Rating]
+    FROM [dbo].[AverageRatings] AS [AverageRatings]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__Actor__PersonID__3D5E1FD2" Association="Self.FK__Actor__PersonID__3D5E1FD2">
             <End Role="Person" EntitySet="Person" />
             <End Role="Actor" EntitySet="Actor" />
@@ -244,9 +252,9 @@
             <End Role="Movie" EntitySet="Movie" />
             <End Role="HasGenre" EntitySet="HasGenre" />
           </AssociationSet>
-          <AssociationSet Name="FK__User__PersonId__5CD6CB2B" Association="Self.FK__User__PersonId__5CD6CB2B">
-            <End Role="Person" EntitySet="Person" />
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK__Rates__MovieID__01142BA1" Association="Self.FK__Rates__MovieID__01142BA1">
+            <End Role="Movie" EntitySet="Movie" />
+            <End Role="Rates" EntitySet="Rates" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -316,6 +324,7 @@
           <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="ActsIns" Relationship="Self.FK__ActsIn__MovieID__4316F928" FromRole="Movie" ToRole="ActsIn" />
           <NavigationProperty Name="Directs" Relationship="Self.FK__Directs__MovieID__46E78A0C" FromRole="Movie" ToRole="Directs" />
+          <NavigationProperty Name="Rates" Relationship="Self.FK__Rates__MovieID__01142BA1" FromRole="Movie" ToRole="Rates" />
           <NavigationProperty Name="Genres" Relationship="Self.HasGenre" FromRole="Movie" ToRole="Genre" />
         </EntityType>
         <EntityType Name="Person">
@@ -328,27 +337,25 @@
           <Property Name="Birthday" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Actors" Relationship="Self.FK__Actor__PersonID__3D5E1FD2" FromRole="Person" ToRole="Actor" />
           <NavigationProperty Name="Directors" Relationship="Self.FK__Director__Person__3A81B327" FromRole="Person" ToRole="Director" />
-          <NavigationProperty Name="Users" Relationship="Self.FK__User__PersonId__5CD6CB2B" FromRole="Person" ToRole="User" />
         </EntityType>
         <EntityType Name="Rate">
           <Key>
-            <PropertyRef Name="UserID" />
-            <PropertyRef Name="MovieID" />
+            <PropertyRef Name="RatingID" />
           </Key>
-          <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="MovieID" Type="Int32" Nullable="false" />
           <Property Name="Rating" Type="Int32" Nullable="false" />
+          <Property Name="RatingID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Movie" Relationship="Self.FK__Rates__MovieID__01142BA1" FromRole="Rates" ToRole="Movie" />
         </EntityType>
-        <EntityType Name="User">
+        <EntityType Name="AverageRating">
           <Key>
-            <PropertyRef Name="UserId" />
+            <PropertyRef Name="MovieId" />
+            <PropertyRef Name="Name" />
           </Key>
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="PersonId" Type="Int32" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Person" Relationship="Self.FK__User__PersonId__5CD6CB2B" FromRole="User" ToRole="Person" />
+          <Property Name="MovieId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Avergae_Rating" Type="Int32" />
         </EntityType>
         <Association Name="FK__Actor__PersonID__3D5E1FD2">
           <End Role="Person" Type="Self.Person" Multiplicity="1" />
@@ -422,15 +429,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__User__PersonId__5CD6CB2B">
-          <End Role="Person" Type="Self.Person" Multiplicity="1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
+        <Association Name="FK__Rates__MovieID__01142BA1">
+          <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+          <End Role="Rates" Type="Self.Rate" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Person">
-              <PropertyRef Name="PersonId" />
+            <Principal Role="Movie">
+              <PropertyRef Name="MovieId" />
             </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="PersonId" />
+            <Dependent Role="Rates">
+              <PropertyRef Name="MovieID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -447,7 +454,7 @@
           <EntitySet Name="Movies" EntityType="Self.Movie" />
           <EntitySet Name="People" EntityType="Self.Person" />
           <EntitySet Name="Rates" EntityType="Self.Rate" />
-          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="AverageRatings" EntityType="Self.AverageRating" />
           <AssociationSet Name="FK__Actor__PersonID__3D5E1FD2" Association="Self.FK__Actor__PersonID__3D5E1FD2">
             <End Role="Person" EntitySet="People" />
             <End Role="Actor" EntitySet="Actors" />
@@ -472,9 +479,9 @@
             <End Role="Movie" EntitySet="Movies" />
             <End Role="Directs" EntitySet="Directs" />
           </AssociationSet>
-          <AssociationSet Name="FK__User__PersonId__5CD6CB2B" Association="Self.FK__User__PersonId__5CD6CB2B">
-            <End Role="Person" EntitySet="People" />
-            <End Role="User" EntitySet="Users" />
+          <AssociationSet Name="FK__Rates__MovieID__01142BA1" Association="Self.FK__Rates__MovieID__01142BA1">
+            <End Role="Movie" EntitySet="Movies" />
+            <End Role="Rates" EntitySet="Rates" />
           </AssociationSet>
           <AssociationSet Name="HasGenre" Association="Self.HasGenre">
             <End Role="Genre" EntitySet="Genres" />
@@ -554,20 +561,19 @@
           <EntitySetMapping Name="Rates">
             <EntityTypeMapping TypeName="DatabaseModel.Rate">
               <MappingFragment StoreEntitySet="Rates">
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="MovieID" ColumnName="MovieID" />
                 <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="RatingID" ColumnName="RatingID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="DatabaseModel.User">
-              <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
+          <EntitySetMapping Name="AverageRatings">
+            <EntityTypeMapping TypeName="DatabaseModel.AverageRating">
+              <MappingFragment StoreEntitySet="AverageRatings">
+                <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Avergae_Rating" ColumnName="Avergae Rating" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

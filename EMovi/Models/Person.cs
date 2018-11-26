@@ -19,7 +19,6 @@ namespace EMovi.Models
         {
             this.Actors = new HashSet<Actor>();
             this.Directors = new HashSet<Director>();
-            this.Users = new HashSet<User>();
         }
     
         public int PersonId { get; set; }
@@ -31,7 +30,5 @@ namespace EMovi.Models
         public virtual ICollection<Actor> Actors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Director> Directors { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
     }
 }

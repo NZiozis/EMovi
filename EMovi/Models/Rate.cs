@@ -14,8 +14,10 @@ namespace EMovi.Models
     
     public partial class Rate
     {
-        public int UserID { get; set; }
         public int MovieID { get; set; }
         public int Rating { get; set; }
+        public int RatingID { get; set; }
+    
+        public virtual Movie Movie { get; set; }
     }
 }
