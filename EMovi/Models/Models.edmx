@@ -1,0 +1,605 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Actor">
+          <Key>
+            <PropertyRef Name="ActorId" />
+          </Key>
+          <Property Name="ActorId" Type="int" Nullable="false" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="Bio" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ActsIn">
+          <Key>
+            <PropertyRef Name="ActorID" />
+            <PropertyRef Name="MovieID" />
+            <PropertyRef Name="CharacterName" />
+          </Key>
+          <Property Name="ActorID" Type="int" Nullable="false" />
+          <Property Name="MovieID" Type="int" Nullable="false" />
+          <Property Name="CharacterName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Director">
+          <Key>
+            <PropertyRef Name="DirectorID" />
+          </Key>
+          <Property Name="DirectorID" Type="int" Nullable="false" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="Bio" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Directs">
+          <Key>
+            <PropertyRef Name="DirectorID" />
+            <PropertyRef Name="MovieID" />
+            <PropertyRef Name="DirectorType" />
+          </Key>
+          <Property Name="DirectorID" Type="int" Nullable="false" />
+          <Property Name="MovieID" Type="int" Nullable="false" />
+          <Property Name="DirectorType" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="GenreID" />
+          </Key>
+          <Property Name="GenreID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="HasGenre">
+          <Key>
+            <PropertyRef Name="GenreID" />
+            <PropertyRef Name="MovieID" />
+          </Key>
+          <Property Name="GenreID" Type="int" Nullable="false" />
+          <Property Name="MovieID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="MovieId" />
+          </Key>
+          <Property Name="MovieId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ReleaseDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Name="PersonId" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Birthday" Type="date" />
+        </EntityType>
+        <EntityType Name="Rates">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="MovieID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="MovieID" Type="int" Nullable="false" />
+          <Property Name="Rating" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="PersonId" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar(max)" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Actor__PersonID__3D5E1FD2">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Actor" Type="Self.Actor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Actor">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ActsIn__ActorID__4222D4EF">
+          <End Role="Actor" Type="Self.Actor" Multiplicity="1" />
+          <End Role="ActsIn" Type="Self.ActsIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actor">
+              <PropertyRef Name="ActorId" />
+            </Principal>
+            <Dependent Role="ActsIn">
+              <PropertyRef Name="ActorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ActsIn__MovieID__4316F928">
+          <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+          <End Role="ActsIn" Type="Self.ActsIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="MovieId" />
+            </Principal>
+            <Dependent Role="ActsIn">
+              <PropertyRef Name="MovieID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Director__Person__3A81B327">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Director" Type="Self.Director" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Director">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Directs__Directo__45F365D3">
+          <End Role="Director" Type="Self.Director" Multiplicity="1" />
+          <End Role="Directs" Type="Self.Directs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Director">
+              <PropertyRef Name="DirectorID" />
+            </Principal>
+            <Dependent Role="Directs">
+              <PropertyRef Name="DirectorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Directs__MovieID__46E78A0C">
+          <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+          <End Role="Directs" Type="Self.Directs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="MovieId" />
+            </Principal>
+            <Dependent Role="Directs">
+              <PropertyRef Name="MovieID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HasGenre__GenreI__49C3F6B7">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
+          <End Role="HasGenre" Type="Self.HasGenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="GenreID" />
+            </Principal>
+            <Dependent Role="HasGenre">
+              <PropertyRef Name="GenreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HasGenre__MovieI__4AB81AF0">
+          <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+          <End Role="HasGenre" Type="Self.HasGenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="MovieId" />
+            </Principal>
+            <Dependent Role="HasGenre">
+              <PropertyRef Name="MovieID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__PersonId__5CD6CB2B">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DatabaseModelStoreContainer">
+          <EntitySet Name="Actor" EntityType="Self.Actor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActsIn" EntityType="Self.ActsIn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Director" EntityType="Self.Director" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Directs" EntityType="Self.Directs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HasGenre" EntityType="Self.HasGenre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movie" EntityType="Self.Movie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rates" EntityType="Self.Rates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Actor__PersonID__3D5E1FD2" Association="Self.FK__Actor__PersonID__3D5E1FD2">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Actor" EntitySet="Actor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ActsIn__ActorID__4222D4EF" Association="Self.FK__ActsIn__ActorID__4222D4EF">
+            <End Role="Actor" EntitySet="Actor" />
+            <End Role="ActsIn" EntitySet="ActsIn" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ActsIn__MovieID__4316F928" Association="Self.FK__ActsIn__MovieID__4316F928">
+            <End Role="Movie" EntitySet="Movie" />
+            <End Role="ActsIn" EntitySet="ActsIn" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Director__Person__3A81B327" Association="Self.FK__Director__Person__3A81B327">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Director" EntitySet="Director" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Directs__Directo__45F365D3" Association="Self.FK__Directs__Directo__45F365D3">
+            <End Role="Director" EntitySet="Director" />
+            <End Role="Directs" EntitySet="Directs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Directs__MovieID__46E78A0C" Association="Self.FK__Directs__MovieID__46E78A0C">
+            <End Role="Movie" EntitySet="Movie" />
+            <End Role="Directs" EntitySet="Directs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HasGenre__GenreI__49C3F6B7" Association="Self.FK__HasGenre__GenreI__49C3F6B7">
+            <End Role="Genre" EntitySet="Genre" />
+            <End Role="HasGenre" EntitySet="HasGenre" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HasGenre__MovieI__4AB81AF0" Association="Self.FK__HasGenre__MovieI__4AB81AF0">
+            <End Role="Movie" EntitySet="Movie" />
+            <End Role="HasGenre" EntitySet="HasGenre" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__PersonId__5CD6CB2B" Association="Self.FK__User__PersonId__5CD6CB2B">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Actor">
+          <Key>
+            <PropertyRef Name="ActorId" />
+          </Key>
+          <Property Name="ActorId" Type="Int32" Nullable="false" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="Bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Person" Relationship="Self.FK__Actor__PersonID__3D5E1FD2" FromRole="Actor" ToRole="Person" />
+          <NavigationProperty Name="ActsIns" Relationship="Self.FK__ActsIn__ActorID__4222D4EF" FromRole="Actor" ToRole="ActsIn" />
+        </EntityType>
+        <EntityType Name="ActsIn">
+          <Key>
+            <PropertyRef Name="ActorID" />
+            <PropertyRef Name="MovieID" />
+            <PropertyRef Name="CharacterName" />
+          </Key>
+          <Property Name="ActorID" Type="Int32" Nullable="false" />
+          <Property Name="MovieID" Type="Int32" Nullable="false" />
+          <Property Name="CharacterName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Actor" Relationship="Self.FK__ActsIn__ActorID__4222D4EF" FromRole="ActsIn" ToRole="Actor" />
+          <NavigationProperty Name="Movie" Relationship="Self.FK__ActsIn__MovieID__4316F928" FromRole="ActsIn" ToRole="Movie" />
+        </EntityType>
+        <EntityType Name="Director">
+          <Key>
+            <PropertyRef Name="DirectorID" />
+          </Key>
+          <Property Name="DirectorID" Type="Int32" Nullable="false" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="Bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Person" Relationship="Self.FK__Director__Person__3A81B327" FromRole="Director" ToRole="Person" />
+          <NavigationProperty Name="Directs" Relationship="Self.FK__Directs__Directo__45F365D3" FromRole="Director" ToRole="Directs" />
+        </EntityType>
+        <EntityType Name="Direct">
+          <Key>
+            <PropertyRef Name="DirectorID" />
+            <PropertyRef Name="MovieID" />
+            <PropertyRef Name="DirectorType" />
+          </Key>
+          <Property Name="DirectorID" Type="Int32" Nullable="false" />
+          <Property Name="MovieID" Type="Int32" Nullable="false" />
+          <Property Name="DirectorType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Director" Relationship="Self.FK__Directs__Directo__45F365D3" FromRole="Directs" ToRole="Director" />
+          <NavigationProperty Name="Movie" Relationship="Self.FK__Directs__MovieID__46E78A0C" FromRole="Directs" ToRole="Movie" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="GenreID" />
+          </Key>
+          <Property Name="GenreID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Movies" Relationship="Self.HasGenre" FromRole="Genre" ToRole="Movie" />
+        </EntityType>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="MovieId" />
+          </Key>
+          <Property Name="MovieId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="ActsIns" Relationship="Self.FK__ActsIn__MovieID__4316F928" FromRole="Movie" ToRole="ActsIn" />
+          <NavigationProperty Name="Directs" Relationship="Self.FK__Directs__MovieID__46E78A0C" FromRole="Movie" ToRole="Directs" />
+          <NavigationProperty Name="Genres" Relationship="Self.HasGenre" FromRole="Movie" ToRole="Genre" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Name="PersonId" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Actors" Relationship="Self.FK__Actor__PersonID__3D5E1FD2" FromRole="Person" ToRole="Actor" />
+          <NavigationProperty Name="Directors" Relationship="Self.FK__Director__Person__3A81B327" FromRole="Person" ToRole="Director" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__User__PersonId__5CD6CB2B" FromRole="Person" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Rate">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="MovieID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="MovieID" Type="Int32" Nullable="false" />
+          <Property Name="Rating" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="PersonId" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK__User__PersonId__5CD6CB2B" FromRole="User" ToRole="Person" />
+        </EntityType>
+        <Association Name="FK__Actor__PersonID__3D5E1FD2">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Actor" Type="Self.Actor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Actor">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ActsIn__ActorID__4222D4EF">
+          <End Role="Actor" Type="Self.Actor" Multiplicity="1" />
+          <End Role="ActsIn" Type="Self.ActsIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actor">
+              <PropertyRef Name="ActorId" />
+            </Principal>
+            <Dependent Role="ActsIn">
+              <PropertyRef Name="ActorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ActsIn__MovieID__4316F928">
+          <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+          <End Role="ActsIn" Type="Self.ActsIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="MovieId" />
+            </Principal>
+            <Dependent Role="ActsIn">
+              <PropertyRef Name="MovieID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Director__Person__3A81B327">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Director" Type="Self.Director" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Director">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Directs__Directo__45F365D3">
+          <End Role="Director" Type="Self.Director" Multiplicity="1" />
+          <End Role="Directs" Type="Self.Direct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Director">
+              <PropertyRef Name="DirectorID" />
+            </Principal>
+            <Dependent Role="Directs">
+              <PropertyRef Name="DirectorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Directs__MovieID__46E78A0C">
+          <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+          <End Role="Directs" Type="Self.Direct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="MovieId" />
+            </Principal>
+            <Dependent Role="Directs">
+              <PropertyRef Name="MovieID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__PersonId__5CD6CB2B">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HasGenre">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="*" />
+          <End Role="Movie" Type="Self.Movie" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Actors" EntityType="Self.Actor" />
+          <EntitySet Name="ActsIns" EntityType="Self.ActsIn" />
+          <EntitySet Name="Directors" EntityType="Self.Director" />
+          <EntitySet Name="Directs" EntityType="Self.Direct" />
+          <EntitySet Name="Genres" EntityType="Self.Genre" />
+          <EntitySet Name="Movies" EntityType="Self.Movie" />
+          <EntitySet Name="People" EntityType="Self.Person" />
+          <EntitySet Name="Rates" EntityType="Self.Rate" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Actor__PersonID__3D5E1FD2" Association="Self.FK__Actor__PersonID__3D5E1FD2">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Actor" EntitySet="Actors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ActsIn__ActorID__4222D4EF" Association="Self.FK__ActsIn__ActorID__4222D4EF">
+            <End Role="Actor" EntitySet="Actors" />
+            <End Role="ActsIn" EntitySet="ActsIns" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ActsIn__MovieID__4316F928" Association="Self.FK__ActsIn__MovieID__4316F928">
+            <End Role="Movie" EntitySet="Movies" />
+            <End Role="ActsIn" EntitySet="ActsIns" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Director__Person__3A81B327" Association="Self.FK__Director__Person__3A81B327">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Director" EntitySet="Directors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Directs__Directo__45F365D3" Association="Self.FK__Directs__Directo__45F365D3">
+            <End Role="Director" EntitySet="Directors" />
+            <End Role="Directs" EntitySet="Directs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Directs__MovieID__46E78A0C" Association="Self.FK__Directs__MovieID__46E78A0C">
+            <End Role="Movie" EntitySet="Movies" />
+            <End Role="Directs" EntitySet="Directs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__PersonId__5CD6CB2B" Association="Self.FK__User__PersonId__5CD6CB2B">
+            <End Role="Person" EntitySet="People" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="HasGenre" Association="Self.HasGenre">
+            <End Role="Genre" EntitySet="Genres" />
+            <End Role="Movie" EntitySet="Movies" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseEntities">
+          <EntitySetMapping Name="Actors">
+            <EntityTypeMapping TypeName="DatabaseModel.Actor">
+              <MappingFragment StoreEntitySet="Actor">
+                <ScalarProperty Name="ActorId" ColumnName="ActorId" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="Bio" ColumnName="Bio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActsIns">
+            <EntityTypeMapping TypeName="DatabaseModel.ActsIn">
+              <MappingFragment StoreEntitySet="ActsIn">
+                <ScalarProperty Name="ActorID" ColumnName="ActorID" />
+                <ScalarProperty Name="MovieID" ColumnName="MovieID" />
+                <ScalarProperty Name="CharacterName" ColumnName="CharacterName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Directors">
+            <EntityTypeMapping TypeName="DatabaseModel.Director">
+              <MappingFragment StoreEntitySet="Director">
+                <ScalarProperty Name="DirectorID" ColumnName="DirectorID" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="Bio" ColumnName="Bio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Directs">
+            <EntityTypeMapping TypeName="DatabaseModel.Direct">
+              <MappingFragment StoreEntitySet="Directs">
+                <ScalarProperty Name="DirectorID" ColumnName="DirectorID" />
+                <ScalarProperty Name="MovieID" ColumnName="MovieID" />
+                <ScalarProperty Name="DirectorType" ColumnName="DirectorType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genres">
+            <EntityTypeMapping TypeName="DatabaseModel.Genre">
+              <MappingFragment StoreEntitySet="Genre">
+                <ScalarProperty Name="GenreID" ColumnName="GenreID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movies">
+            <EntityTypeMapping TypeName="DatabaseModel.Movie">
+              <MappingFragment StoreEntitySet="Movie">
+                <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="DatabaseModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rates">
+            <EntityTypeMapping TypeName="DatabaseModel.Rate">
+              <MappingFragment StoreEntitySet="Rates">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="MovieID" ColumnName="MovieID" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DatabaseModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="HasGenre" TypeName="DatabaseModel.HasGenre" StoreEntitySet="HasGenre">
+            <EndProperty Name="Genre">
+              <ScalarProperty Name="GenreID" ColumnName="GenreID" />
+            </EndProperty>
+            <EndProperty Name="Movie">
+              <ScalarProperty Name="MovieId" ColumnName="MovieID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,11 @@
+﻿@model IEnumerable<EMovi.Models.Movie>
+
+@{
+    ViewBag.Title = "Movies";
+}
+
+@foreach (var item in Model)
+{
+    <h4>@item.Name</h4>
+    <div>@item.ReleaseDate</div>
+}
