@@ -199,6 +199,9 @@
     <Compile Include="Models\Person.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Poster.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Rate.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>

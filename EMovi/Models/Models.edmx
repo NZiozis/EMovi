@@ -74,6 +74,13 @@
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Birthday" Type="date" />
         </EntityType>
+        <EntityType Name="Poster">
+          <Key>
+            <PropertyRef Name="MovieID" />
+          </Key>
+          <Property Name="MovieID" Type="int" Nullable="false" />
+          <Property Name="PosterLink" Type="varchar(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="Rates">
           <Key>
             <PropertyRef Name="RatingID" />
@@ -190,6 +197,18 @@ warning 6002: The table/view 'C:\USERS\KLAPS\SOURCE\REPOS\EMOVI\EMOVI\APP_DATA\D
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Poster__MovieID__3C34F16F">
+          <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+          <End Role="Poster" Type="Self.Poster" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="MovieId" />
+            </Principal>
+            <Dependent Role="Poster">
+              <PropertyRef Name="MovieID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Rates__MovieID__01142BA1">
           <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
           <End Role="Rates" Type="Self.Rates" Multiplicity="*" />
@@ -211,6 +230,7 @@ warning 6002: The table/view 'C:\USERS\KLAPS\SOURCE\REPOS\EMOVI\EMOVI\APP_DATA\D
           <EntitySet Name="HasGenre" EntityType="Self.HasGenre" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Movie" EntityType="Self.Movie" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Poster" EntityType="Self.Poster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rates" EntityType="Self.Rates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AverageRatings" EntityType="Self.AverageRatings" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -251,6 +271,10 @@ warning 6002: The table/view 'C:\USERS\KLAPS\SOURCE\REPOS\EMOVI\EMOVI\APP_DATA\D
           <AssociationSet Name="FK__HasGenre__MovieI__4AB81AF0" Association="Self.FK__HasGenre__MovieI__4AB81AF0">
             <End Role="Movie" EntitySet="Movie" />
             <End Role="HasGenre" EntitySet="HasGenre" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Poster__MovieID__3C34F16F" Association="Self.FK__Poster__MovieID__3C34F16F">
+            <End Role="Movie" EntitySet="Movie" />
+            <End Role="Poster" EntitySet="Poster" />
           </AssociationSet>
           <AssociationSet Name="FK__Rates__MovieID__01142BA1" Association="Self.FK__Rates__MovieID__01142BA1">
             <End Role="Movie" EntitySet="Movie" />
@@ -324,6 +348,7 @@ warning 6002: The table/view 'C:\USERS\KLAPS\SOURCE\REPOS\EMOVI\EMOVI\APP_DATA\D
           <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="ActsIns" Relationship="Self.FK__ActsIn__MovieID__4316F928" FromRole="Movie" ToRole="ActsIn" />
           <NavigationProperty Name="Directs" Relationship="Self.FK__Directs__MovieID__46E78A0C" FromRole="Movie" ToRole="Directs" />
+          <NavigationProperty Name="Poster" Relationship="Self.FK__Poster__MovieID__3C34F16F" FromRole="Movie" ToRole="Poster" />
           <NavigationProperty Name="Rates" Relationship="Self.FK__Rates__MovieID__01142BA1" FromRole="Movie" ToRole="Rates" />
           <NavigationProperty Name="Genres" Relationship="Self.HasGenre" FromRole="Movie" ToRole="Genre" />
         </EntityType>
@@ -337,6 +362,14 @@ warning 6002: The table/view 'C:\USERS\KLAPS\SOURCE\REPOS\EMOVI\EMOVI\APP_DATA\D
           <Property Name="Birthday" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Actors" Relationship="Self.FK__Actor__PersonID__3D5E1FD2" FromRole="Person" ToRole="Actor" />
           <NavigationProperty Name="Directors" Relationship="Self.FK__Director__Person__3A81B327" FromRole="Person" ToRole="Director" />
+        </EntityType>
+        <EntityType Name="Poster">
+          <Key>
+            <PropertyRef Name="MovieID" />
+          </Key>
+          <Property Name="MovieID" Type="Int32" Nullable="false" />
+          <Property Name="PosterLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Movie" Relationship="Self.FK__Poster__MovieID__3C34F16F" FromRole="Poster" ToRole="Movie" />
         </EntityType>
         <EntityType Name="Rate">
           <Key>
@@ -429,6 +462,18 @@ warning 6002: The table/view 'C:\USERS\KLAPS\SOURCE\REPOS\EMOVI\EMOVI\APP_DATA\D
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Poster__MovieID__3C34F16F">
+          <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+          <End Role="Poster" Type="Self.Poster" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="MovieId" />
+            </Principal>
+            <Dependent Role="Poster">
+              <PropertyRef Name="MovieID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Rates__MovieID__01142BA1">
           <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
           <End Role="Rates" Type="Self.Rate" Multiplicity="*" />
@@ -453,6 +498,7 @@ warning 6002: The table/view 'C:\USERS\KLAPS\SOURCE\REPOS\EMOVI\EMOVI\APP_DATA\D
           <EntitySet Name="Genres" EntityType="Self.Genre" />
           <EntitySet Name="Movies" EntityType="Self.Movie" />
           <EntitySet Name="People" EntityType="Self.Person" />
+          <EntitySet Name="Posters" EntityType="Self.Poster" />
           <EntitySet Name="Rates" EntityType="Self.Rate" />
           <EntitySet Name="AverageRatings" EntityType="Self.AverageRating" />
           <AssociationSet Name="FK__Actor__PersonID__3D5E1FD2" Association="Self.FK__Actor__PersonID__3D5E1FD2">
@@ -478,6 +524,10 @@ warning 6002: The table/view 'C:\USERS\KLAPS\SOURCE\REPOS\EMOVI\EMOVI\APP_DATA\D
           <AssociationSet Name="FK__Directs__MovieID__46E78A0C" Association="Self.FK__Directs__MovieID__46E78A0C">
             <End Role="Movie" EntitySet="Movies" />
             <End Role="Directs" EntitySet="Directs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Poster__MovieID__3C34F16F" Association="Self.FK__Poster__MovieID__3C34F16F">
+            <End Role="Movie" EntitySet="Movies" />
+            <End Role="Poster" EntitySet="Posters" />
           </AssociationSet>
           <AssociationSet Name="FK__Rates__MovieID__01142BA1" Association="Self.FK__Rates__MovieID__01142BA1">
             <End Role="Movie" EntitySet="Movies" />
@@ -555,6 +605,14 @@ warning 6002: The table/view 'C:\USERS\KLAPS\SOURCE\REPOS\EMOVI\EMOVI\APP_DATA\D
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posters">
+            <EntityTypeMapping TypeName="DatabaseModel.Poster">
+              <MappingFragment StoreEntitySet="Poster">
+                <ScalarProperty Name="MovieID" ColumnName="MovieID" />
+                <ScalarProperty Name="PosterLink" ColumnName="PosterLink" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

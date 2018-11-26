@@ -4,22 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6df64a22304e42a5b27553f637e84910" Name="Diagram1">
-        <EntityTypeShape EntityType="DatabaseModel.Actor" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatabaseModel.ActsIn" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatabaseModel.Director" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatabaseModel.Direct" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatabaseModel.Genre" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatabaseModel.Movie" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatabaseModel.Person" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatabaseModel.Rate" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatabaseModel.AverageRating" Width="1.5" PointX="5.75" PointY="7.625" IsExpanded="true" />
+      <Diagram DiagramId="6bae4824bc4641669f2e380ae17f03b8" Name="Diagram1">
+        <EntityTypeShape EntityType="DatabaseModel.Actor" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.ActsIn" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Director" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Direct" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Genre" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Movie" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Person" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Poster" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Rate" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.AverageRating" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="DatabaseModel.FK__Actor__PersonID__3D5E1FD2" ManuallyRouted="false" />
         <AssociationConnector Association="DatabaseModel.FK__ActsIn__ActorID__4222D4EF" ManuallyRouted="false" />
         <AssociationConnector Association="DatabaseModel.FK__ActsIn__MovieID__4316F928" ManuallyRouted="false" />
         <AssociationConnector Association="DatabaseModel.FK__Director__Person__3A81B327" ManuallyRouted="false" />
         <AssociationConnector Association="DatabaseModel.FK__Directs__Directo__45F365D3" ManuallyRouted="false" />
         <AssociationConnector Association="DatabaseModel.FK__Directs__MovieID__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK__Poster__MovieID__3C34F16F" ManuallyRouted="false" />
         <AssociationConnector Association="DatabaseModel.FK__Rates__MovieID__01142BA1" ManuallyRouted="false" />
         <AssociationConnector Association="DatabaseModel.HasGenre" ManuallyRouted="false" />
       </Diagram>
