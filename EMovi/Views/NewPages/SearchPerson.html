@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <HTML>
     <head>
         <meta charset="utf-8">
@@ -13,7 +13,7 @@
         <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <button type="button" class="btn btn-default navbar-btn">Sign in</button>
+                        <button type="button" class="btn btn-default navbar-btn" onclick="location.href='SignIn.html'">Sign in</button>
                     </div>
                 </div>
         </nav>
@@ -45,8 +45,16 @@
                     <p>Year:</p>
                     <input type="text" placeholder="Year">
                 </div>
-                
-                <button type="button" onclick="location.href='ResultPage.html'" style ="grid-row-start: 3">Search</button>
+
+                <div class="input_element">
+                    <p>Select:</p>
+                    <select name="actor-or-director">
+                        <option value="actor">Actor</option>
+                        <option value="director">Director</option>
+                    </select>
+                </div>
+
+                <button id="search" type="button" onclick="location.href='ResultPage.html'" style ="grid-row-start: 3">Search</button>
         </div>
             
         <footer>

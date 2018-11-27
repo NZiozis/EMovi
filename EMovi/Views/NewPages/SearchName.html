@@ -13,7 +13,7 @@
         <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <button type="button" class="btn btn-default navbar-btn">Sign in</button>
+                        <button type="button" class="btn btn-default navbar-btn" onclick="location.href='SignIn.html'">Sign in</button>
                     </div>
                 </div>
         </nav>
@@ -24,24 +24,24 @@
             <h1>Search by Movie Name</h1>
         </header>
 
-        <div id="container">
+        <form id="container">
             <div class = "input_element">
                 <p>Name:</p>
-                <input type="text" placeholder="Name">
+                <input type="text" name="name" placeholder="Name">
             </div>
 
             <div class="input_element">
                 <p>Genres:</p>
-                <input type="text" placeholder="Genre">
+                <input type="text" name="genre" placeholder="Genre">
             </div>
             
             <div class="input_element">
                 <p>Year:</p>
-                <input type="text" placeholder="Year">
+                <input type="text" name="year" placeholder="Year">
             </div>
            
-            <button type="button" onclick="location.href='ResultPage.html'">Search</button>
-        </div>
+            <input id="search" type="submit" value="Search" formaction="ResultPage.html">
+        </form>
         
         <footer>
 

@@ -29,21 +29,6 @@ header h1{
     font-size: 170%;
 }
 
-/*----------------------sidebar shits--------------------------*/
-#sidebar{
-    width: 20%;
-    float: left;
-}
-
-#sidebar h1{
-    text-align: center;
-}
-
-#sidebar h1 a{
-    text-decoration: none;
-    color: white;
-}
-
 /*----------------------container things-----------------------*/
 #container{
     width: 75%;
@@ -61,9 +46,10 @@ header h1{
     border-radius: 5px;
     border: solid, 1px, white;
     padding: 2% 0 2% 0; 
-    cursor: pointer;
     margin-top: 5%;
+    font-size: 140%;
 }
+
 
 #container a{
     text-decoration: none;
@@ -84,19 +70,20 @@ header h1{
     margin-left: 10px;
 }
 
-#container .input_element input{
+#container .input_element input, #container .input_element select{
     width: 95%; 
     height: 40px;
     padding-left: 5%; 
     margin-bottom: 5%;
+    color: black; 
 }
 
-#container button{
+#container #search{
     color: white;
     background-color: slategray;
     text-align: center;
     border-radius: 5px;
-    padding: 8% 8%;
+    padding: 5% 8%;
     font-size: 20px;
     cursor: pointer;
     display: block; 
@@ -106,27 +93,32 @@ header h1{
 }
 
 /*-------------------------result style------------------------------*/
+#container2{
+    width:75%;
+    margin-right: auto;
+    margin-left: auto;
+  
+}
 
 table{
     width: 100%;
 }
 
+table img{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .result{
     height: 20px;
-    background-color: red;
+}
+tr{
+    border-bottom: 1px;
 }
 
-/*.result .img{
-    max-width: 100%;
-    max-height: 100%;  
-}
-
-.result .info{
-    width: inherit;
-    flex-basis: auto; 
-    margin-top: -2%;
-} */
-
+tr:nth-child(even) {background: #CCC}
+tr:nth-child(odd) {background: slategray;}
 
 footer{
     clear: both;
