@@ -40,7 +40,17 @@ header h1{
     grid-template-columns: 32% 32% 32%;
 }
 
-#container .main_button{
+#container3{        /*specially designed for the homepage because the disabled button looked incomplete*/
+    width: 60%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 2vh;
+    display: grid;
+    grid-column-gap: 2%;
+    grid-template-columns: 49% 49%;
+}
+
+#container3 .main_button{
     height: 15vh; 
     background-color: slategray;
     border-radius: 5px;
@@ -92,6 +102,7 @@ header h1{
     margin: 20px auto;
 }
 
+
 /*-------------------------result style------------------------------*/
 #container2{
     width:75%;
@@ -102,6 +113,7 @@ header h1{
 
 table{
     width: 100%;
+    margin: 2% 0;
 }
 
 table img{
@@ -113,12 +125,23 @@ table img{
 .result{
     height: 20px;
 }
-tr{
-    border-bottom: 1px;
+
+td{
+    padding: 1%;
 }
 
-tr:nth-child(even) {background: #CCC}
-tr:nth-child(odd) {background: slategray;}
+.info a{
+    text-decoration: underline;
+    color:white;
+}
+
+tr:nth-child(even) {background:rgba(39,43,48,0.6);}
+tr:nth-child(odd) {background: rgba(112,128,144,0.6);}
+
+tr:first-child td:first-child { border-top-left-radius: 10px; }
+tr:first-child td:last-child { border-top-right-radius: 10px; }
+tr:last-child td:first-child { border-bottom-left-radius: 10px; }
+tr:last-child td:last-child { border-bottom-right-radius: 10px; }
 
 footer{
     clear: both;

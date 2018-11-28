@@ -25,37 +25,36 @@
             <h1>Search by Actor/Director</h1>
         </header>
 
-        <div id="container">
+        <form id="container">
                 <div class = "input_element">
                     <p>First Name:</p>
-                    <input type="text" placeholder="First Name">
+                    <input type="text" name="fname" placeholder="First Name">
                 </div>
 
                 <div class="input_element">
                     <p>Last Name:</p>
-                    <input type="text" placeholder="Last Name">
+                    <input type="text" name="lname" placeholder="Last Name">
                 </div>
     
                 <div class="input_element">
                     <p>Genres:</p>
-                    <input type="text" placeholder="Genre">
+                    <input type="text" name="genre" placeholder="Genre">
                 </div>
                 
                 <div class="input_element">
                     <p>Year:</p>
-                    <input type="text" placeholder="Year">
+                    <input type="text" name="year"placeholder="Year">
                 </div>
 
                 <div class="input_element">
                     <p>Select:</p>
-                    <select name="actor-or-director">
+                    <select name="actor-or-director" form="container">
                         <option value="actor">Actor</option>
                         <option value="director">Director</option>
                     </select>
                 </div>
-
-                <button id="search" type="button" onclick="location.href='ResultPage.html'" style ="grid-row-start: 3">Search</button>
-        </div>
+                <input id="search" type="submit" value="Search" style ="grid-row-start: 3" formaction="ResultPage.html">
+        </form>
             
         <footer>
 
