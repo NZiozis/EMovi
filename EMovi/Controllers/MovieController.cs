@@ -18,10 +18,18 @@ namespace EMovi.Controllers
 
         public ActionResult Search(string name = null, string genre = null, string year = null)
         {
+            if (String.IsNullOrWhiteSpace(year)) year = null;
+            if (String.IsNullOrWhiteSpace(name)) name = null;
+            if (String.IsNullOrWhiteSpace(genre)) genre = null;
+
             var query =
                 _db.Movies
-                .Where(r => name == null || r.Name.Contains(name));
-                
+                .Where(
+                    r =>
+                    (name == null || r.Name.Contains(name)) &&
+                    (year == null || r.ReleaseDate.Year.ToString().Equals(year))
+                );
+
 
             return View(query);
         }
