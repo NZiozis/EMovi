@@ -13,9 +13,17 @@ namespace EMovi.Controllers
         // GET: Movie
         public ActionResult Index()
         {
-            var model = _db.Movies.ToList();
+            return View();
+        }
 
-            return View(model);
+        public ActionResult Search(string name = null, string genre = null, string year = null)
+        {
+            var query =
+                _db.Movies
+                .Where(r => name == null || r.Name.Contains(name));
+                
+
+            return View(query);
         }
 
         protected override void Dispose(bool disposing)

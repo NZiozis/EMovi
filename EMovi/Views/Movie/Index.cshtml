@@ -2,7 +2,8 @@
     ViewBag.Title = "Movies";
 }
 
-<form id="container">
+@using (Html.BeginForm("Search", "Movie", FormMethod.Get, new { id = "container" })) {
+
     <div class="input_element">
         <p>Name:</p>
         <input type="text" name="name" placeholder="Name">
@@ -18,5 +19,5 @@
         <input type="text" name="year" placeholder="Year">
     </div>
 
-    <input id="search" type="submit" value="Search" formmethod="get">
-</form>
+    <input id="search" type="submit" value="Search">
+}
