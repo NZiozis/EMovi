@@ -14,8 +14,8 @@ namespace EMovi.Models
     
     public partial class ActsIn
     {
-        public int ActorID { get; set; }
         public int MovieID { get; set; }
+        public int ActorID { get; set; }
         public string CharacterName { get; set; }
     
         public virtual Actor Actor { get; set; }

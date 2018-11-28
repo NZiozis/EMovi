@@ -4,22 +4,26 @@
     ViewBag.Title = "Search";
 }
 
-@foreach (var item in Model)
+@foreach (var movie in Model)
 {
-    <h4>@item.Name</h4>
-    foreach (var actor in item.ActsIns)
+
+
+    <h4>@Html.ActionLink(movie.Name, "Total", "Movie", movie, new { id = movie.Name })</h4>
+
+    foreach (var actor in movie.ActsIns)
     {
-    <div>@actor.Actor.Person.FirstName, @actor.Actor.Person.LastName</div>
+        <div>@actor.Actor.Person.FirstName, @actor.Actor.Person.LastName</div>
     }
-    var total =0;
-    var count =0;
-    foreach (var rating in item.Rates)
+    var total = 0;
+    var count = 0;
+    foreach (var rating in movie.Rates)
     {
         count++;
         total += rating.Rating;
     }
-    <div>Average Rating: @(total/count)</div>
-    <img src="@item.Poster.PosterLink" height="90" width="125"/>
+    <div>Average Rating: @(total / count)</div>
+    <img src="@movie.Poster.PosterLink" height="90" width="125" />
+
 }
 
 

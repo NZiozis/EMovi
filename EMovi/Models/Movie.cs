@@ -25,8 +25,8 @@ namespace EMovi.Models
     
         public int MovieId { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
         public System.DateTime ReleaseDate { get; set; }
+        public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ActsIn> ActsIns { get; set; }

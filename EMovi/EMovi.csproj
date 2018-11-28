@@ -253,6 +253,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\Movie\Search.cshtml" />
     <Content Include="Views\NewPages\DataPage.html" />
     <Content Include="Views\NewPages\Emovi.html" />
     <Content Include="Views\NewPages\ResultPage.html" />
@@ -273,7 +274,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Movie\Index.cshtml" />
-    <Content Include="Views\Movie\Search.cshtml" />
+    <Content Include="Views\Movie\Total.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

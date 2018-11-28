@@ -10,12 +10,18 @@ namespace EMovi.Controllers
     public class MovieController : Controller
     {
         DatabaseEntities _db = new DatabaseEntities();
-        // GET: Movie
+
         public ActionResult Index()
         {
             return View();
         }
 
+        public ActionResult Total(Movie movie) {
+
+            return View(movie);
+        }
+
+        [HttpGet]
         public ActionResult Search(string name = null, string genre = null, string year = null)
         {
             if (String.IsNullOrWhiteSpace(year)) year = null;
