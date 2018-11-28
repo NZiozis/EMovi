@@ -166,9 +166,6 @@
     <Compile Include="Models\ActsIn.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AverageRating.cs">
-      <DependentUpon>Models.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Direct.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>

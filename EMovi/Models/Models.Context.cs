@@ -34,6 +34,5 @@ namespace EMovi.Models
         public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<Poster> Posters { get; set; }
         public virtual DbSet<Rate> Rates { get; set; }
-        public virtual DbSet<AverageRating> AverageRatings { get; set; }
     }
 }
