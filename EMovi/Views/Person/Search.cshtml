@@ -1,0 +1,9 @@
+﻿@model IEnumerable<EMovi.Models.Person>
+@{
+    ViewBag.Title = "Search";
+}
+
+@foreach( var person in Model)
+{
+    <h4>@person.FirstName @person.LastName</h4>
+}

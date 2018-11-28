@@ -16,7 +16,13 @@ namespace EMovi
             routes.MapRoute(
                 name: "Movie",
                 url: "Movie/{action}",
-                defaults: new { controller = "Movie", action = "Index"}
+                defaults: new { controller = "Movie", action = "Index" }
+            );
+
+            routes.MapRoute(
+                name: "Person",
+                url: "Person/{action}",
+                defaults: new { controller = "Person", action = "Index" }
             );
 
             routes.MapRoute(

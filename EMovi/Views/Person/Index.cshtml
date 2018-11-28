@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm("Search", "Person", FormMethod.Get, new { id = "container" }))
+{
+    <div class="input_element">
+        <p>First Name:</p>
+        <input type="text" name="fname" placeholder="First Name">
+    </div>
+
+    <div class="input_element">
+        <p>Last Name:</p>
+        <input type="text" name="lname" placeholder="Last Name">
+    </div>
+
+    <div class="input_element">
+        <p>Genres:</p>
+        <input type="text" name="genre" placeholder="Genre">
+    </div>
+
+    <div class="input_element">
+        <p>Select:</p>
+        <select name="typePerson" form="container">
+            <option value="actor">Actor</option>
+            <option value="director">Director</option>
+        </select>
+    </div>
+    <input id="search" type="submit" value="Search" style="grid-row-start: 3">
+}
+
