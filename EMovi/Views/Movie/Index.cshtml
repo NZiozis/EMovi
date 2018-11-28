@@ -1,11 +1,22 @@
-﻿@model IEnumerable<EMovi.Models.Movie>
-
-@{
+﻿@{
     ViewBag.Title = "Movies";
 }
 
-@foreach (var item in Model)
-{
-    <h4>@item.Name</h4>
-    <div>@item.ReleaseDate</div>
-}
+<form id="container">
+    <div class="input_element">
+        <p>Name:</p>
+        <input type="text" name="name" placeholder="Name">
+    </div>
+
+    <div class="input_element">
+        <p>Genres:</p>
+        <input type="text" name="genre" placeholder="Genre">
+    </div>
+
+    <div class="input_element">
+        <p>Year:</p>
+        <input type="text" name="year" placeholder="Year">
+    </div>
+
+    <input id="search" type="submit" value="Search" formmethod="get">
+</form>
