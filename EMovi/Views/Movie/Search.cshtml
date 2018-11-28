@@ -6,12 +6,7 @@
 
 @foreach (var item in Model)
 {
-    foreach (var actor in item.ActsIns)
-    {
-        <h4>@actor.Actor.Person.FirstName</h4>
-        <h4>@actor.Actor.Person.LastName</h4>
-
-    }
+    <h4>@item.Name</h4>
 }
 
 

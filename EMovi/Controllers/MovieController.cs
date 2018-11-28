@@ -20,8 +20,12 @@ namespace EMovi.Controllers
         {
             var query =
                 _db.Movies
-                .Where(r => name == null || r.Name.Contains(name));
-                
+                .Where(
+                    r =>
+                    (name == null || r.Name.Contains(name)) /*&&
+                    (year == null || r.ReleaseDate.Year.ToString().Equals(year))*/
+                );
+
 
             return View(query);
         }
