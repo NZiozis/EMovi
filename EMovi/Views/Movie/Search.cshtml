@@ -7,6 +7,11 @@
 @foreach (var item in Model)
 {
     <h4>@item.Name</h4>
+    foreach (var actor in item.ActsIns)
+    {
+    <div>@actor.Actor.Person.FirstName, @actor.Actor.Person.LastName</div>
+
+    }
 }
 
 
