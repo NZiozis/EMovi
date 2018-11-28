@@ -40,7 +40,17 @@ header h1{
     grid-template-columns: 32% 32% 32%;
 }
 
-#container .main_button{
+#container3{        /*specially designed for the homepage because the disabled button looked incomplete*/
+    width: 60%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 2vh;
+    display: grid;
+    grid-column-gap: 2%;
+    grid-template-columns: 49% 49%;
+}
+
+#container3 .main_button{
     height: 15vh; 
     background-color: slategray;
     border-radius: 5px;
@@ -91,6 +101,7 @@ header h1{
     border: none;
     margin: 20px auto;
 }
+
 
 /*-------------------------result style------------------------------*/
 #container2{
