@@ -27,7 +27,8 @@ namespace EMovi.Controllers
                 .Where(
                     r =>
                     (name == null || r.Name.Contains(name)) &&
-                    (year == null || r.ReleaseDate.Year.ToString().Equals(year))
+                    (year == null || r.ReleaseDate.Year.ToString().Equals(year)) &&
+                    (genre == null || r.Genres.Any(g => g.Name.Equals(genre)))
                 );
 
 

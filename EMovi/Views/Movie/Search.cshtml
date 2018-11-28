@@ -10,8 +10,16 @@
     foreach (var actor in item.ActsIns)
     {
     <div>@actor.Actor.Person.FirstName, @actor.Actor.Person.LastName</div>
-
     }
+    var total =0;
+    var count =0;
+    foreach (var rating in item.Rates)
+    {
+        count++;
+        total += rating.Rating;
+    }
+    <div>Average Rating: @(total/count)</div>
+    <img src="@item.Poster.PosterLink" height="90" width="125"/>
 }
 
 
