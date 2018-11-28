@@ -28,11 +28,18 @@ namespace EMovi.Controllers
 
             IQueryable<Person> query = null;
 
-
             if (typePerson == null)
             {
-                RedirectToAction("Index");
-                return View();
+                query =
+                        _db.People
+                        .Where(person => (
+                           (fname == null || person.FirstName.Contains(fname)) &&
+                           (lname == null || person.LastName.Contains(lname)) &&
+                           (genre == null || 
+                                person.Actors.Any(actor => actor.ActsIns.Any(role => role.Movie.Genres.Any(g => g.Name.Contains(genre)))) ||
+                                person.Directors.Any(director => director.Directs.Any(role => role.Movie.Genres.Any(g => g.Name.Contains(genre))))
+                                )
+                        ));
             }
             else if (typePerson.ToLower().Equals("actor"))
             {
@@ -53,9 +60,10 @@ namespace EMovi.Controllers
                         (person.Directors.Any(director => _db.Directors.Any(d => d.DirectorID == director.DirectorID))) &&
                         (fname == null || person.FirstName.Contains(fname)) &&
                         (lname == null || person.LastName.Contains(lname)) &&
-                        (genre == null || person.Actors.Any(actor => actor.ActsIns.Any(role => role.Movie.Genres.Any(g => g.Name.Contains(genre)))))
+                        (genre == null || person.Directors.Any(director => director.Directs.Any(role => role.Movie.Genres.Any(g => g.Name.Contains(genre)))))
                     ));
             }
+            
 
 
             return View(query);
