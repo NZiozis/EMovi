@@ -30,6 +30,7 @@ namespace EMovi.Models
         public virtual DbSet<Director> Directors { get; set; }
         public virtual DbSet<Direct> Directs { get; set; }
         public virtual DbSet<Genre> Genres { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<Movie> Movies { get; set; }
         public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<Poster> Posters { get; set; }

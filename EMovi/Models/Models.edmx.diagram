@@ -4,14 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9b69eef2e43f4271b079e5931e5bb1d0" Name="Diagram1">
-        <EntityTypeShape EntityType="DatabaseModel.Actor" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+      <Diagram DiagramId="110dd460939547798c342cc996f95803" Name="Diagram1">
+        <EntityTypeShape EntityType="DatabaseModel.Actor" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DatabaseModel.ActsIn" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatabaseModel.Director" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Director" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DatabaseModel.Direct" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DatabaseModel.Genre" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Image" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DatabaseModel.Movie" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatabaseModel.Person" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Person" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DatabaseModel.Poster" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DatabaseModel.Rate" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
         <AssociationConnector Association="DatabaseModel.FK__Actor__PersonID__3D5E1FD2" ManuallyRouted="false" />
@@ -20,6 +21,7 @@
         <AssociationConnector Association="DatabaseModel.FK__Director__Person__3A81B327" ManuallyRouted="false" />
         <AssociationConnector Association="DatabaseModel.FK__Directs__Directo__45F365D3" ManuallyRouted="false" />
         <AssociationConnector Association="DatabaseModel.FK__Directs__MovieID__51300E55" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK__Image__PersonID__7849DB76" ManuallyRouted="false" />
         <AssociationConnector Association="DatabaseModel.FK__Poster__MovieID__4F47C5E3" ManuallyRouted="false" />
         <AssociationConnector Association="DatabaseModel.FK__Rates__MovieID__531856C7" ManuallyRouted="false" />
         <AssociationConnector Association="DatabaseModel.HasGenre" ManuallyRouted="false" />

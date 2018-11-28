@@ -11,7 +11,6 @@
           </Key>
           <Property Name="ActorId" Type="int" Nullable="false" />
           <Property Name="PersonID" Type="int" Nullable="false" />
-          <Property Name="Bio" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ActsIn">
           <Key>
@@ -29,7 +28,6 @@
           </Key>
           <Property Name="DirectorID" Type="int" Nullable="false" />
           <Property Name="PersonID" Type="int" Nullable="false" />
-          <Property Name="Bio" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Directs">
           <Key>
@@ -56,6 +54,13 @@
           <Property Name="GenreID" Type="int" Nullable="false" />
           <Property Name="MovieID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="ImageLink" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="Movie">
           <Key>
             <PropertyRef Name="MovieId" />
@@ -73,6 +78,7 @@
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Birthday" Type="date" />
+          <Property Name="Bio" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Poster">
           <Key>
@@ -185,6 +191,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Image__PersonID__7849DB76">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Image">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Poster__MovieID__4F47C5E3">
           <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
           <End Role="Poster" Type="Self.Poster" Multiplicity="0..1" />
@@ -216,6 +234,7 @@
           <EntitySet Name="Directs" EntityType="Self.Directs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HasGenre" EntityType="Self.HasGenre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Movie" EntityType="Self.Movie" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Poster" EntityType="Self.Poster" Schema="dbo" store:Type="Tables" />
@@ -252,6 +271,10 @@
             <End Role="Movie" EntitySet="Movie" />
             <End Role="HasGenre" EntitySet="HasGenre" />
           </AssociationSet>
+          <AssociationSet Name="FK__Image__PersonID__7849DB76" Association="Self.FK__Image__PersonID__7849DB76">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Image" EntitySet="Image" />
+          </AssociationSet>
           <AssociationSet Name="FK__Poster__MovieID__4F47C5E3" Association="Self.FK__Poster__MovieID__4F47C5E3">
             <End Role="Movie" EntitySet="Movie" />
             <End Role="Poster" EntitySet="Poster" />
@@ -272,7 +295,6 @@
           </Key>
           <Property Name="ActorId" Type="Int32" Nullable="false" />
           <Property Name="PersonID" Type="Int32" Nullable="false" />
-          <Property Name="Bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Person" Relationship="Self.FK__Actor__PersonID__3D5E1FD2" FromRole="Actor" ToRole="Person" />
           <NavigationProperty Name="ActsIns" Relationship="Self.FK__ActsIn__ActorID__625A9A57" FromRole="Actor" ToRole="ActsIn" />
         </EntityType>
@@ -294,7 +316,6 @@
           </Key>
           <Property Name="DirectorID" Type="Int32" Nullable="false" />
           <Property Name="PersonID" Type="Int32" Nullable="false" />
-          <Property Name="Bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Person" Relationship="Self.FK__Director__Person__3A81B327" FromRole="Director" ToRole="Person" />
           <NavigationProperty Name="Directs" Relationship="Self.FK__Directs__Directo__45F365D3" FromRole="Director" ToRole="Directs" />
         </EntityType>
@@ -318,6 +339,14 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Movies" Relationship="Self.HasGenre" FromRole="Genre" ToRole="Movie" />
         </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="ImageLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK__Image__PersonID__7849DB76" FromRole="Image" ToRole="Person" />
+        </EntityType>
         <EntityType Name="Movie">
           <Key>
             <PropertyRef Name="MovieId" />
@@ -340,8 +369,10 @@
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="Bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Actors" Relationship="Self.FK__Actor__PersonID__3D5E1FD2" FromRole="Person" ToRole="Actor" />
           <NavigationProperty Name="Directors" Relationship="Self.FK__Director__Person__3A81B327" FromRole="Person" ToRole="Director" />
+          <NavigationProperty Name="Image" Relationship="Self.FK__Image__PersonID__7849DB76" FromRole="Person" ToRole="Image" />
         </EntityType>
         <EntityType Name="Poster">
           <Key>
@@ -432,6 +463,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Image__PersonID__7849DB76">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Image">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Poster__MovieID__4F47C5E3">
           <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
           <End Role="Poster" Type="Self.Poster" Multiplicity="0..1" />
@@ -466,6 +509,7 @@
           <EntitySet Name="Directors" EntityType="Self.Director" />
           <EntitySet Name="Directs" EntityType="Self.Direct" />
           <EntitySet Name="Genres" EntityType="Self.Genre" />
+          <EntitySet Name="Images" EntityType="Self.Image" />
           <EntitySet Name="Movies" EntityType="Self.Movie" />
           <EntitySet Name="People" EntityType="Self.Person" />
           <EntitySet Name="Posters" EntityType="Self.Poster" />
@@ -494,6 +538,10 @@
             <End Role="Movie" EntitySet="Movies" />
             <End Role="Directs" EntitySet="Directs" />
           </AssociationSet>
+          <AssociationSet Name="FK__Image__PersonID__7849DB76" Association="Self.FK__Image__PersonID__7849DB76">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Image" EntitySet="Images" />
+          </AssociationSet>
           <AssociationSet Name="FK__Poster__MovieID__4F47C5E3" Association="Self.FK__Poster__MovieID__4F47C5E3">
             <End Role="Movie" EntitySet="Movies" />
             <End Role="Poster" EntitySet="Posters" />
@@ -518,7 +566,6 @@
               <MappingFragment StoreEntitySet="Actor">
                 <ScalarProperty Name="ActorId" ColumnName="ActorId" />
                 <ScalarProperty Name="PersonID" ColumnName="PersonID" />
-                <ScalarProperty Name="Bio" ColumnName="Bio" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -536,7 +583,6 @@
               <MappingFragment StoreEntitySet="Director">
                 <ScalarProperty Name="DirectorID" ColumnName="DirectorID" />
                 <ScalarProperty Name="PersonID" ColumnName="PersonID" />
-                <ScalarProperty Name="Bio" ColumnName="Bio" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -557,6 +603,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="DatabaseModel.Image">
+              <MappingFragment StoreEntitySet="Image">
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="ImageLink" ColumnName="ImageLink" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Movies">
             <EntityTypeMapping TypeName="DatabaseModel.Movie">
               <MappingFragment StoreEntitySet="Movie">
@@ -574,6 +628,7 @@
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Bio" ColumnName="Bio" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
