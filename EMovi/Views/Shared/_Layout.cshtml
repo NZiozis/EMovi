@@ -16,7 +16,10 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("EMovi", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Movies", "Index", "Movie", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("People", "Index", "Person", new { area = "" }, new { @class = "navbar-brand" })
+                
             </div>
         </div>
     </nav>
