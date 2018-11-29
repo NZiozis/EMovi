@@ -20,7 +20,7 @@
             <h4>
                 Directed By: @foreach (var director in Model.Directs)
                 {
-                    @Html.ActionLink(director.Director.Person.FirstName + " " + director.Director.Person.LastName + ", ", "Total", "Person", director.Director.Person, new { id = director })
+                    @Html.ActionLink(director.Director.Person.FirstName + " " + director.Director.Person.LastName, "Total", "Person", director.Director.Person, new { id = director })
                 }
             </h4>
             <h4>
@@ -33,6 +33,15 @@
                 @Model.Description
             </p>
             <h5>Date/Year Released: @Model.ReleaseDate.ToShortDateString()</h5>
+            @{ 
+                var total =0;
+                var count =0;
+                foreach (var rating in Model.Rates){
+                    count++;
+                    total += rating.Rating;
+                }
+            }
+            <h5>Avg Rating: @(total/count)</h5>
         </td>
     </tr>
 </table>
