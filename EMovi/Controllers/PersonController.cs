@@ -18,6 +18,11 @@ namespace EMovi.Controllers
             return View();
         }
 
+        public ActionResult Total(Person person)
+        {
+            return View(person);
+        }
+
         public ActionResult Search(string fname = null, string lname = null, string genre = null, string year = null, string typePerson = null)
         {
             if (String.IsNullOrWhiteSpace(year)) year = null;
@@ -63,8 +68,24 @@ namespace EMovi.Controllers
                         (genre == null || person.Directors.Any(director => director.Directs.Any(role => role.Movie.Genres.Any(g => g.Name.Contains(genre)))))
                     ));
             }
-            
+            else if (typePerson.ToLower().Equals("both"))
+            {
+                query =
+                        _db.People
+                        .Where(person => (
+                           (
+                                (person.Directors.Any(director => _db.Directors.Any(d => d.DirectorID == director.DirectorID))) &&
+                                (person.Actors.Any(actor => _db.Actors.Any(a => a.ActorId == actor.ActorId)))
+                            ) &&
 
+                           (fname == null || person.FirstName.Contains(fname)) &&
+                           (lname == null || person.LastName.Contains(lname)) &&
+                           (genre == null ||
+                                person.Actors.Any(actor => actor.ActsIns.Any(role => role.Movie.Genres.Any(g => g.Name.Contains(genre)))) ||
+                                person.Directors.Any(director => director.Directs.Any(role => role.Movie.Genres.Any(g => g.Name.Contains(genre))))
+                                )
+                        ));
+            }
 
             return View(query);
         }

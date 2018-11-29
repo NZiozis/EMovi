@@ -26,7 +26,7 @@ namespace EMovi.Controllers
         {
             if (String.IsNullOrWhiteSpace(year)) year = null;
             if (String.IsNullOrWhiteSpace(name)) name = null;
-            if (String.IsNullOrWhiteSpace(genre)) genre = null;
+            if (String.IsNullOrWhiteSpace(genre)) genre = null;            
 
             var query =
                 _db.Movies

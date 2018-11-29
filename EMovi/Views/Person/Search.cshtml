@@ -2,8 +2,30 @@
 @{
     ViewBag.Title = "Search";
 }
+<table>
+    <!--template for person-->
 
-@foreach( var person in Model)
-{
-    <h4>@person.FirstName @person.LastName</h4>
-}
+    @foreach (var person in Model)
+    {
+        <tr class="result">
+            @if (person.Image != null)
+            {
+            <td class="img">
+                <img src="@person.Image.ImageLink" width="90" height="125" />
+            </td>
+            }
+            else
+            {
+                <td width="90" height="125"></td>
+            }
+            <td class="info">
+                <h3>@Html.ActionLink(person.FirstName + " " + person.LastName, "Total", "Person", person, new { id = person.PersonId })</h3>
+            </td>
+
+            <td class="rating">
+                <!--Leave this blank column here for reasons-->
+            </td>
+        </tr>
+    }
+
+</table>
