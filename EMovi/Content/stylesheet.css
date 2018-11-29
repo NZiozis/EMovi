@@ -135,6 +135,7 @@ td{
     color:white;
 }
 
+
 tr:nth-child(even) {background:rgba(39,43,48,0.6);}
 tr:nth-child(odd) {background: rgba(112,128,144,0.6);}
 
