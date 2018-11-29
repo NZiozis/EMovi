@@ -6,6 +6,11 @@ body{
     color: white;
 }
 
+::selection{
+    background-color: #ffc300;
+    color: black;
+}
+
 .btn{
     background-color: slategray;
     color: white;
@@ -52,12 +57,16 @@ header h1{
 
 #container3 .main_button{
     height: 15vh; 
-    background-color: slategray;
+    background-color: rgba(112,128,144,0.7);
     border-radius: 5px;
     border: solid, 1px, white;
     padding: 2% 0 2% 0; 
     margin-top: 5%;
     font-size: 140%;
+}
+
+#container3 .main_button:hover{
+    background-color: rgba(112,128,144,1);
 }
 
 
@@ -90,7 +99,7 @@ header h1{
 
 #container #search{
     color: white;
-    background-color: slategray;
+    background-color: rgba(112,128,144,0.7);
     text-align: center;
     border-radius: 5px;
     padding: 5% 8%;
@@ -100,6 +109,10 @@ header h1{
     grid-column-start: 2;
     border: none;
     margin: 20px auto;
+}
+
+#container input[value="Search"]:hover{
+    background-color: rgba(112,128,144,1);
 }
 
 
