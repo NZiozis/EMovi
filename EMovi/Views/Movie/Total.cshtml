@@ -20,7 +20,7 @@
             <h4>
                 Directed By: @foreach (var director in Model.Directs)
                 {
-                    @(director.Director.Person.FirstName + " " + director.Director.Person.LastName + ", ")
+                    @Html.ActionLink(director.Director.Person.FirstName + " " + director.Director.Person.LastName + ", ", "Total", "Person", director.Director.Person, new { id = director })
                 }
             </h4>
             <h4>
@@ -32,7 +32,7 @@
             <p>
                 @Model.Description
             </p>
-            <h5>Date/Year Released: @Model.ReleaseDate.Date</h5>
+            <h5>Date/Year Released: @Model.ReleaseDate.ToShortDateString()</h5>
         </td>
     </tr>
 </table>
