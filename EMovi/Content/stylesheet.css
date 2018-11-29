@@ -117,6 +117,7 @@ table{
 }
 
 table img{
+    width: 15vh;
     display: block;
     margin-right: auto;
     margin-left: auto;
@@ -136,16 +137,41 @@ td{
 }
 
 
-tr:nth-child(even) {background:rgba(39,43,48,0.6);}
-tr:nth-child(odd) {background: rgba(112,128,144,0.6);}
+tr:nth-child(even) {
+    background:rgba(39,43,48,0.6);
+}
+tr:nth-child(odd) {
+    background: rgba(112,128,144,0.6);
+}
 
-tr:first-child td:first-child { border-top-left-radius: 10px; }
-tr:first-child td:last-child { border-top-right-radius: 10px; }
-tr:last-child td:first-child { border-bottom-left-radius: 10px; }
-tr:last-child td:last-child { border-bottom-right-radius: 10px; }
+tr:first-child td:first-child { 
+    border-top-left-radius: 10px; 
+}
+tr:first-child td:last-child { 
+    border-top-right-radius: 10px; 
+}
+tr:last-child td:first-child { 
+    border-bottom-left-radius: 10px; 
+}
+tr:last-child td:last-child { 
+    border-bottom-right-radius: 10px; 
+}
 
 .rating{
     text-align: center;
+}
+
+/*-----------------------------Data Page style----------------------------*/
+
+#container2 .data-img{
+    width: 40vh;
+    padding: 2vh 0 2vh 2vh;
+    vertical-align: top;
+}
+
+#container2 .details{
+    vertical-align: top;
+    padding: 0 5vh;
 }
 
 /*-----------------------------footer shits-------------------------------*/
