@@ -3,5 +3,45 @@
     ViewBag.Title = "Total";
 }
 
-<h2>@Model.FirstName @Model.LastName</h2>
+<table img="display">
+    <tr>
+        <td class="data-img">
+            @if (Model.Image != null)
+            {
+                <img src="@Model.Image.ImageLink" class="data-img" />
+            }
+        </td>
 
+        <td class="details">
+            <h1>@(Model.FirstName + " " + Model.LastName) </h1>
+            @if (Model.Birthday != null)
+            {
+                <h4>Birthday: @Model.Birthday.Value.Date</h4>
+            }
+            else
+            {
+                <h4>Birthday: Unlisted</h4>
+            }
+            @if (Model.Directors.Any())
+            {
+                <h4>
+                    Movies Directed: @foreach (var role in Model.Directors.First().Directs)
+                    {
+                        @Html.ActionLink(role.Movie.Name + ", ", "Total", "Movie", role.Movie, new { id = role.Movie.Name })
+                    }
+                </h4>
+            }
+            @if (Model.Actors.Any())
+            {
+                <h4>
+                    Movies Acted in:@foreach (var role in Model.Actors.First().ActsIns)
+                    {
+                        @Html.ActionLink(role.Movie.Name + ", ", "Total", "Movie", role.Movie, new { id = role.Movie.Name })
+                    }
+                </h4>
+
+            }
+            <p> @Model.Bio</p>
+        </td>
+    </tr>
+</table>

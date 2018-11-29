@@ -20,7 +20,9 @@ namespace EMovi.Controllers
 
         public ActionResult Total(Person person)
         {
-            return View(person);
+            var query = _db.People.Where(p => p.PersonId == person.PersonId);
+
+            return View(query.First());
         }
 
         public ActionResult Search(string fname = null, string lname = null, string genre = null, string year = null, string typePerson = null)
