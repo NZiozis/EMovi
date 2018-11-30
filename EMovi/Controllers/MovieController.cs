@@ -18,7 +18,9 @@ namespace EMovi.Controllers
 
         public ActionResult Total(Movie movie) {
 
-            return View(movie);
+            var query = _db.Movies.Where(m => m.MovieId == movie.MovieId);
+
+            return View(query.First());
         }
 
         [HttpGet]

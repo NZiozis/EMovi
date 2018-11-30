@@ -3,6 +3,45 @@
 @{
     ViewBag.Title = "Total";
 }
+<table img="display">
+    <tr>
+        <td class="data-img">
+            <img src="@Model.Poster.PosterLink" class="data-img" />
+        </td>
 
-<h2>@Model.Name</h2>
-
+        <td class="details">
+            <h1>@Model.Name </h1>
+            <h4>
+                Genre(s): @foreach (var genre in Model.Genres)
+                {
+                    @(genre.Name + ", ")
+                }
+            </h4>
+            <h4>
+                Directed By: @foreach (var director in Model.Directs)
+                {
+                    @Html.ActionLink(director.Director.Person.FirstName + " " + director.Director.Person.LastName, "Total", "Person", director.Director.Person, new { id = director })
+                }
+            </h4>
+            <h4>
+                Actors/Actresses: @foreach (var actor in Model.ActsIns)
+                {
+                    @Html.ActionLink(actor.Actor.Person.FirstName + " " + actor.Actor.Person.LastName + ", ", "Total", "Person", actor.Actor.Person, new { id = actor })
+                }
+            </h4>
+            <p>
+                @Model.Description
+            </p>
+            <h5>Date/Year Released: @Model.ReleaseDate.ToShortDateString()</h5>
+            @{ 
+                var total =0;
+                var count =0;
+                foreach (var rating in Model.Rates){
+                    count++;
+                    total += rating.Rating;
+                }
+            }
+            <h5>Avg Rating: @(total/count)</h5>
+        </td>
+    </tr>
+</table>
