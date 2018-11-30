@@ -20,7 +20,7 @@
             <h4>
                 Directed By: @foreach (var director in Model.Directs)
                 {
-                    @Html.ActionLink(director.Director.Person.FirstName + " " + director.Director.Person.LastName, "Total", "Person", director.Director.Person, new { id = director })
+                    @Html.ActionLink(director.Director.Person.FirstName + " " + director.Director.Person.LastName + ", ", "Total", "Person", director.Director.Person, new { id = director })
                 }
             </h4>
             <h4>
