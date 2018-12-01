@@ -1,8 +1,11 @@
 ﻿@{
     ViewBag.Title = "Movies";
 }
-
-@using (Html.BeginForm("Search", "Movie", FormMethod.Get, new { id = "container" })) {
+<header>
+    <h1>Search by Movie</h1>
+</header>
+@using (Html.BeginForm("Search", "Movie", FormMethod.Get, new { id = "container" }))
+{
 
     <div class="input_element">
         <p>Name:</p>
