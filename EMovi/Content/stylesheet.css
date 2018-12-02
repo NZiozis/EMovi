@@ -187,6 +187,10 @@ tr:last-child td:last-child {
     vertical-align: top; 
 }
 
+#container2 tr{
+    padding-bottom: 2%;
+}
+
 #container2 .data-img2{
     width: 40vh;
     vertical-align: top;
