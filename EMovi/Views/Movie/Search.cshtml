@@ -3,56 +3,63 @@
 @{
     ViewBag.Title = "Search";
 }
-<div id="container2">
-    <table width="100%">
+@if (!Model.Any())
+{
+    <h1 align="center" style="font-size:120px;">No Results</h1>
+}
+else
+{
 
-        @foreach (var movie in Model)
-        {
-            <!--template result for movie-->
-            <tr class="result">
-                <td class="img">
-                    <img src="@movie.Poster.PosterLink" height="90" width="125" />
-                </td>
+    <div id="container2">
+        <table width="100%">
 
-                <!--The sizes of the heading tags are arbitrary. i.e changing them will not break anything-->
-                <td class="info">
-                    <h3>@Html.ActionLink(movie.Name, "Total", "Movie", movie, new { id = movie.Name })</h3>
-                    @if (movie.Directs != null)
-                    {
+            @foreach (var movie in Model)
+            {
+                <!--template result for movie-->
+                <tr class="result">
+                    <td class="img">
+                        <img src="@movie.Poster.PosterLink" height="90" width="125" />
+                    </td>
+
+                    <!--The sizes of the heading tags are arbitrary. i.e changing them will not break anything-->
+                    <td class="info">
+                        <h3>@Html.ActionLink(movie.Name, "Total", "Movie", movie, new { id = movie.Name })</h3>
+                        @if (movie.Directs != null)
+                        {
+                            <h5>
+                                Directed By: @foreach (var director in movie.Directs)
+                                {
+                                    @(director.Director.Person.FirstName + " " + director.Director.Person.LastName + ", ")
+                                }
+                            </h5>
+                        }
                         <h5>
-                            Directed By: @foreach (var director in movie.Directs)
+                            Genres: @foreach (var genre in movie.Genres)
                             {
-                                @(director.Director.Person.FirstName + " " + director.Director.Person.LastName + ", ")
+                                @(genre.Name + ", ")
                             }
                         </h5>
-                    }
-                    <h5>
-                        Genres: @foreach (var genre in movie.Genres)
-                        {
-                            @(genre.Name + ", ")
-                        }
-                    </h5>
-                </td>
-
-                @if (movie.Rates != null)
-                {
-
-                    var total = 0;
-                    var count = 0;
-                    foreach (var rating in movie.Rates)
-                    {
-                        count++;
-                        total += rating.Rating;
-                    }
-
-                    <td class="rating" width="20%">
-                        <h3>Avg Rating:</h3>
-                        <h4>@(total / count)</h4>
                     </td>
-                }
-            </tr>
-        }
-    </table>
-</div>
 
+                    @if (movie.Rates != null)
+                    {
+
+                        var total = 0;
+                        var count = 0;
+                        foreach (var rating in movie.Rates)
+                        {
+                            count++;
+                            total += rating.Rating;
+                        }
+
+                        <td class="rating" width="20%">
+                            <h3>Avg Rating:</h3>
+                            <h4>@(total / count)</h4>
+                        </td>
+                    }
+                </tr>
+            }
+        </table>
+    </div>
+}
 

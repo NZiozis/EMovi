@@ -2,30 +2,38 @@
 @{
     ViewBag.Title = "Search";
 }
-<table>
-    <!--template for person-->
+@if (!Model.Any())
+{
+    <h1 align="center" style="font-size:120px;">No Results</h1>
+}
+else
+{
 
-    @foreach (var person in Model)
-    {
-        <tr class="result">
-            @if (person.Image != null)
-            {
-            <td class="img">
-                <img src="@person.Image.ImageLink" width="90" height="125" />
-            </td>
-            }
-            else
-            {
-                <td width="90" height="125"></td>
-            }
-            <td class="info">
-                <h3>@Html.ActionLink(person.FirstName + " " + person.LastName, "Total", "Person", person, new { id = person.PersonId })</h3>
-            </td>
+    <table>
+        <!--template for person-->
 
-            <td class="rating">
-                <!--Leave this blank column here for reasons-->
-            </td>
-        </tr>
-    }
+        @foreach (var person in Model)
+        {
+            <tr class="result">
+                @if (person.Image != null)
+                {
+                    <td class="img">
+                        <img src="@person.Image.ImageLink" width="90" height="125" />
+                    </td>
+                }
+                else
+                {
+                    <td width="90" height="125"></td>
+                }
+                <td class="info">
+                    <h3>@Html.ActionLink(person.FirstName + " " + person.LastName, "Total", "Person", person, new { id = person.PersonId })</h3>
+                </td>
 
-</table>
+                <td class="rating">
+                    <!--Leave this blank column here for reasons-->
+                </td>
+            </tr>
+        }
+
+    </table>
+}
