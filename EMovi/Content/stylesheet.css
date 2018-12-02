@@ -144,11 +144,15 @@ td{
     padding: 1%;
 }
 
-.info a{
+.info h3 a{
     text-decoration: underline;
-    color:white;
+    color: lightgoldenrodyellow;
 }
 
+.details h4 a {
+    text-decoration: underline;
+    color: lightgoldenrodyellow;
+}
 
 tr:nth-child(even) {
     background:rgba(39,43,48,0.6);
