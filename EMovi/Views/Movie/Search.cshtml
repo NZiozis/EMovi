@@ -18,7 +18,7 @@ else
                 <!--template result for movie-->
                 <tr class="result">
                     <td class="img">
-                        <img src="@movie.Poster.PosterLink" height="90" width="125" />
+                        <img src="@movie.Poster.PosterLink" />
                     </td>
 
                     <!--The sizes of the heading tags are arbitrary. i.e changing them will not break anything-->
@@ -52,7 +52,7 @@ else
                             total += rating.Rating;
                         }
 
-                        <td class="rating" width="20%">
+                        <td class="rating" width="25%">
                             <h3>Avg Rating:</h3>
                             <h4>@(total / count)</h4>
                         </td>

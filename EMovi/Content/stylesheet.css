@@ -21,6 +21,7 @@ body{
 header {
     padding-top: 5%;
 }
+
 header img{
     width: 15%;
     height: 15%;
@@ -140,18 +141,18 @@ table img{
     height: 20px;
 }
 
-td{
-    padding: 1%;
+.result td{
+    padding: 2%;
 }
 
-.info h3 a{
+.info h3 a {
     text-decoration: underline;
-    color: lightgoldenrodyellow;
+    color: #ffe6b3
 }
 
 .details h4 a {
     text-decoration: underline;
-    color: lightgoldenrodyellow;
+    color: #ffe6b3;
 }
 
 tr:nth-child(even) {
@@ -182,13 +183,18 @@ tr:last-child td:last-child {
 
 #container2 .data-img{
     width: 40vh;
-    padding: 2vh 0 2vh 2vh;
+    padding: 3vh 0 3vh 3vh;
+    vertical-align: top; 
+}
+
+#container2 .data-img2{
+    width: 40vh;
     vertical-align: top;
 }
 
 #container2 .details{
     vertical-align: top;
-    padding: 0 5vh;
+    padding: 0 3vh;
 }
 
 /*-----------------------------footer shits-------------------------------*/
